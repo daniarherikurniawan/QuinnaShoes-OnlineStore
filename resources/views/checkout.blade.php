@@ -1,8 +1,19 @@
-<?php use App\Product;
-use App\DetailPemesanan; 
-$total_bayar = 0;
-$total_jumlah = 0;
-$jumlah_item = 0;?>
+<?php 
+	use App\Product;
+	use App\DetailPemesanan; 
+	$total_bayar = 0;
+	$total_jumlah = 0;
+	$jumlah_item = 0;
+	function writeHarga($harga){
+		$result = "";
+		$n = strlen($harga);
+		for ($i=$n; $i>3; $i -= 3){
+			$result = "." . substr($harga, $i-3, 3) . $result;
+		}
+		$result = substr($harga, 0, $i) . $result;
+		return $result;
+	}
+?>
 
 @extends("layouts.master")
 
@@ -37,7 +48,7 @@ $jumlah_item = 0;?>
 								<?php if(\Session::get('id_data_saved')==0) {?>
 									<input type="text" name = "nama_pemesan" placeholder="Name" required>
 									<input type="text" name = "telepon_pemesan" placeholder="Phone Number" required>
-									<input type="text" name = "email_pemesan" placeholder="Email" required>
+									<input type="email" name = "email_pemesan" placeholder="Email" required>
 									<input type="text" name = "alamat1_pemesan" placeholder="Address 1 " required>
 									<input type="text" name = "alamat2_pemesan" placeholder="Address 2">
 								<?php }else{ ?>
@@ -63,7 +74,7 @@ $jumlah_item = 0;?>
 								<?php if(\Session::get('id_data_saved')==0) {?>
 									<input type="text" name="nama_penerima" placeholder="Receiver Name" required>
 									<input type="text" name="telepon_penerima" placeholder="Receiver's Phone Number" required>
-									<input type="text" name="email_penerima" placeholder="Receiver's email" required>
+									<input type="email" name="email_penerima" placeholder="Receiver's email">
 									<input type="text" name="alamat_penerima" placeholder="Shipping Address" required>
 									<select name="negara_penerima">
 										<option>Indonesia</option>
@@ -74,7 +85,7 @@ $jumlah_item = 0;?>
 										<option>Banten</option>
 										<option>Jakarta</option>
 									</select>
-									<input type="text"  name="kode_pos_penerima" placeholder="Zip / Postal Code" required>
+									<input type="number"  name="kode_pos_penerima" placeholder="Zip / Postal Code" required>
 								<?php }else{ ?>
 									<input type="text"  value="{{$data->nama_penerima}}" name="nama_penerima" placeholder="Receiver Name"  readonly>
 									<input type="text" value="{{$data->telepon_penerima}}" name="telepon_penerima" placeholder="Receiver's Phone Number"  readonly>
@@ -167,14 +178,14 @@ $jumlah_item = 0;?>
 									<p>Web ID: 1089772</p>
 								</td>
 								<td class="text-center cart_price">
-									<p>{{"Rp  ".$product->harga.",-"}}</p>
+									<p>{{"Rp  ".writeHarga($product->harga).",-"}}</p>
 								</td>
 								<td class="text-center cart_price"><p>{{$pesanan->jumlah}}</p>
 								</td>
 								<td class="text-center cart_price"><p>{{$pesanan->ukuran}}</p>
 								</td>
 								<td class="text-center cart_total">
-									<p class="cart_total_price">{{"Rp  ".$bayar.",-"}}</p>
+									<p class="cart_total_price">{{"Rp  ".writeHarga($bayar).",-"}}</p>
 								</td>
 								<td class="text-center cart_price">
 									<p class ="cart_delete">
@@ -193,19 +204,15 @@ $jumlah_item = 0;?>
 								<table class="table table-condensed total-result">
 									<tr>
 										<td>Cart Sub Total</td>
-										<td>{{"Rp ".$total_bayar.",-"}}</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$2</td>
+										<td>{{"Rp ".writeHarga($total_bayar).",-"}}</td>
 									</tr>
 									<tr class="shipping-cost">
 										<td>Shipping Cost</td>
-										<td>Free</td>										
+										<td>Rp 0,-</td>										
 									</tr>
 									<tr>
 										<td>Total</td>
-										<td><span>$61</span></td>
+										<td><span>{{"Rp ".writeHarga($total_bayar).",-"}}</span></td>
 									</tr>
 								</table>
 							</td>

@@ -62,12 +62,12 @@
 		<div class="text-center col-sm-4">
 			<div class="signup-form"><!--sign up form-->
 				{!! Form::open(['url'=>"pesan", 'method'=>'PATCH', 'files'=>true])!!}
-					<input type="text" class="form-control" name="jumlah"  placeholder="Jumlah Pemesanan" required/>
-					<input type="text" class="form-control" name="deadline"  placeholder="Tanggal Maksimal Pembuatan" required/>
+					<input type="number" min="1" class="form-control" name="jumlah"  placeholder="Jumlah Pemesanan" required/>
+					<input type="date" class="form-control" name="deadline"  placeholder="Tanggal Maksimal Pembuatan" required/>
 					<input type="text" class="form-control" name="deskripsi_pemesanan"   placeholder="Deskripsi Pemesanan" required/>
 					<input type="text" class="form-control" name="deskripsi_ukuran"   placeholder="Deskripsi Ukuran" required/>
-					<input type="text" class="form-control" name="alamat"  placeholder="Alamat Pemesan"/>
-					<input type="text" class="form-control" name="no_telepon" placeholder="Nomor Telepon" />
+					<input type="text" class="form-control" name="alamat"  placeholder="Alamat Pemesan" required/>
+					<input type="text" class="form-control" name="no_telepon" placeholder="Nomor Telepon" required/>
 					<select class="span4 form-control"  id="pembayaran" name="pembayaran">
 						<option value="Membayar uang muka pesanan">Membayar uang muka pesanan</option>
 						<option value="Melunasi harga pesanan">Melunasi harga pesanan</option>

@@ -38,6 +38,35 @@ class ProductController extends Controller {
 		return view('addproduct',compact('str'));
 	}
 
+	public function editProductRedirect()
+	{
+		$id = \Session::get('edit_product');
+		$product = Product::find($id);
+		$str = $product->nama_gambar;
+		return view('editproduct',compact('str'),compact('product'));
+	}
+
+	public function editProduct($id)
+	{
+
+		\Session::put('edit_product', $id);
+		return redirect('editproductredirect');
+	}
+	
+	public function checkEditProductRedirect()
+	{
+		$id = \Session::get('edit_product');
+		$product = Product::find($id);
+
+		$product->model = \Request::get('model');
+		$product->deskripsi = \Request::get('deskripsi');
+		$product->harga = \Request::get('harga');
+		$product->nama_gambar = \Request::get('nama_gambar');
+		$product->kategori = \Request::get('kategori');
+		$product->save();
+		return redirect('listproduct');
+	}
+
 	public function upload() {
 		\Session::put('uploaded', "true");
 		$nama_gambar = (\Request::file("image")->getClientOriginalName());

@@ -30,19 +30,11 @@
 
 				?>
 				<div class="row pull-center col-sm-9">
-					{!! Form::open(array('url'=>'uploadgambar','method'=>'PATCH', 'visibility'=> 'hidden' ,'files'=>true)) !!}
-			         
-			          {!! Form::file('image') !!}
-					  <p class="errors">{{$errors->first('image')}}</p>
-					@if(Session::has('error'))
-					<p class="errors">{{ Session::get('error') }}</p>
-					@endif
+					
 					
 				</div>
 
 				<div class="text-center col-sm-12">
-			       {!! Form::submit('Submit Image', array('class'=>'send-btn','class'=>'btn get')) !!}
-			      {!! Form::close() !!}
 				</div>
 
 				<?php 
@@ -61,11 +53,11 @@
 		</div>
 		<div class="text-center col-sm-4">
 			<div class="signup-form"><!--sign up form-->
-				{!! Form::open(['url'=>"addproduct", 'method'=>'PATCH', 'files'=>true])!!}
-					<input type="text" class="form-control" name="model"  placeholder="Model Sepatu" required/>
-					<input type="text" class="form-control" name="deskripsi"   placeholder="Deskripsi" required/>
-					<input type="number" min="0" class="form-control" name="harga" placeholder="Harga" required/>
-					<input type="hidden" class="form-control" name="nama_gambar" value={{$str}} />
+				{!! Form::open(['url'=>"editproductredirect", 'method'=>'PATCH', 'files'=>true])!!}
+					<input type="text" class="form-control"  value="{{$product->model}}"  name="model"  placeholder="Model Sepatu" required/>
+					<input type="text" class="form-control" value="{{$product->deskripsi}}"  name="deskripsi"   placeholder="Deskripsi" required/>
+					<input type="harga" class="form-control" value="{{$product->harga}}" name="harga" placeholder="Harga" required/>
+					<input type="hidden" class="form-control" value="{{$product->nama_gambar}}" name="nama_gambar" value={{$str}} />
 					
 					<select class="span4 form-control"  id="kategori" name="kategori">
 						<option value="hot_item">Hot Item Product</option>
@@ -73,14 +65,9 @@
 					</select>
 
 					<p></p>
-					<?php 
-						if (\Session::get('uploaded')=="true"){ 
-					?>
+					
 					<button type="submit" class="btn pull-right btn-default">Save</button>
-					<?php 
-						\Session::put('uploaded', "false");
-						}
-					 ?>
+					
 				{!!Form::close()!!}
 			</div><!--/sign up form-->
 		</div>

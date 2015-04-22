@@ -1,7 +1,18 @@
-<?php use App\Product; 
-use App\Penjualan; 
-use App\Pesanan;
-use App\User; ?>
+<?php 
+	use App\Product; 
+	use App\Penjualan; 
+	use App\Pesanan;
+	use App\User; 
+	function writeHarga($harga){
+		$result = "";
+		$n = strlen($harga);
+		for ($i=$n; $i>3; $i -= 3){
+			$result = "." . substr($harga, $i-3, 3) . $result;
+		}
+		$result = substr($harga, 0, $i) . $result;
+		return $result;
+	}
+?>
 
 @extends("layouts.master")
 
@@ -67,7 +78,7 @@ use App\User; ?>
 								</td>
 								<td class="text-center cart_price"><p>{{$pesanan->jumlah}}</p>
 								</td>
-								<td class="text-center cart_price"><p>{{"Rp ".$penjualan->total_bayar.",-"}}</p>
+								<td class="text-center cart_price"><p>{{"Rp ".writeHarga($penjualan->total_bayar).",-"}}</p>
 								</td>
 								<td ></td>
 							</tr>

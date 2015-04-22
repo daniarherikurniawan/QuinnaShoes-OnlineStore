@@ -38,7 +38,11 @@ Route::get('/deleteproduct/{id}', 'ProductController@deleteProduct');
 
 Route::patch('/uploadgambar', 'ProductController@upload');
 
+Route::get('/editproduct/{id}', 'ProductController@editProduct');
 
+Route::get('/editproductredirect', 'ProductController@editProductRedirect');
+
+Route::patch('/editproductredirect', 'ProductController@checkEditProductRedirect');
 
 Route::get('/detailpemesanan', 'PesananController@detailPemesananCartRedirect');
 

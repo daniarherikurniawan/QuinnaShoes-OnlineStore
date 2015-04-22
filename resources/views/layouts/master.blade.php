@@ -77,7 +77,7 @@
 										if(\Session::get('peran')==2){
 											echo "<a type=\"button\" class=\"btn btn-default get \" href=\"cart\"><i class=\"fa fa-shopping-cart\"></i> Cart</a>&nbsp;";
 											echo "<a type=\"button\" class=\"btn btn-default get \" href=\"checkout\"><i class=\"fa fa-crosshairs\"></i> Checkout</a>&nbsp;";
-											echo "<a type=\"button\" class=\"btn btn-default get \" href=\"pesanan\"><i class=\"fa fa-shopping-cart\"></i> ChartOrder</a>&nbsp;";
+											echo "<a type=\"button\" class=\"btn btn-default get \" href=\"pesanan\"><i class=\"fa fa-shopping-cart\"></i> CartOrder</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
 											echo "<a type=\"button\" class=\"btn btn-default get \" href=\"listorderbydesign\"><i class=\"fa fa-shopping-cart\"></i> OrderByDesign</a>&nbsp;";
 										} 
 										if (\Session::get('peran')==1){

@@ -83,7 +83,7 @@ class HomeController extends Controller {
         	return view("status.failed",compact("str"));
 		}
 	}
-
+	
 	public function addUser()
 	{
 		try{

@@ -64,7 +64,7 @@
 
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 class="text-info">{{$product->harga}}</h4>
+							<h4 class="text-info">{{"Rp ".$product->harga.",-"}}</h4>
 						</div>
 					</div>
 
@@ -83,8 +83,8 @@
 							<h4 class="text-info ">Data Pesanan</h4>
 						</div>
 						{!! Form::open(['url'=>"addcart", 'method'=>'PATCH'])!!}
-							<input type="text" name="jumlah" placeholder="Jumlah Sepatu" required/>
-							<input type="text" name="ukuran" placeholder="Ukuran Sepatu" required/>
+							<input type="number" name="jumlah" min="1" placeholder="Jumlah Sepatu" required/>
+							<input type="number" min="25" max="48" name="ukuran" placeholder="Ukuran Sepatu" required/>
 							<input type="hidden" name="id_product" value={{$product->id}} />
 					</div><!--/login form-->
 				</div>

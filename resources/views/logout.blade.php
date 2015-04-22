@@ -12,8 +12,8 @@
 				<div class = "text-center text-info"><h4>Apakah Anda yakin ingin keluar?</h4></div>
 				<br>
 				<div class="text-center">
-					<a href="home" data-dismiss="modal" class="btn btn-info">Tidak</a>
 					<a href="clean" role="button" class="btn get" >Iya</a>
+					<a href="home" data-dismiss="modal" class="btn btn-info">Tidak</a>
 				</div>
 			</div>
 	<br>

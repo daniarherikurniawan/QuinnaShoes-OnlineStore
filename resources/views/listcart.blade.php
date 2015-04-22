@@ -2,7 +2,15 @@
 	$isiCart = DB::table('cart')
 	                    ->where('id_pesanan', $pesanan->id)
 	                    ->get();
-
+	function writeHarga($harga){
+		$result = "";
+		$n = strlen($harga);
+		for ($i=$n; $i>3; $i -= 3){
+			$result = "." . substr($harga, $i-3, 3) . $result;
+		}
+		$result = substr($harga, 0, $i) . $result;
+		return $result;
+	}
  ?>
 
 @extends("layouts.master")
@@ -66,14 +74,14 @@
 									<p>Web ID: 1089772</p>
 								</td>
 								<td class="text-center cart_price">
-									<p>{{"Rp  ".$product->harga.",-"}}</p>
+									<p>{{"Rp  ".writeHarga($product->harga).",-"}}</p>
 								</td>
 								<td class="text-center cart_price"><p>{{$itemcart->jumlah}}</p>
 								</td>
 								<td class="text-center cart_price"><p>{{$itemcart->ukuran}}</p>
 								</td>
 								<td class="text-center cart_total">
-									<p class="cart_total_price">{{"Rp  ".$product->harga*$itemcart->jumlah.",-"}}</p>
+									<p class="cart_total_price">{{"Rp  ".writeHarga($product->harga*$itemcart->jumlah).",-"}}</p>
 								</td>
 								<td ></td>
 							</tr>

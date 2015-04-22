@@ -25,7 +25,7 @@
 							<td class="text-center description">Description</td>
 							<td class="text-center price">Quantity</td>
 							<td class="text-center total">Size</td>
-							<?php if(\Session::get('id')==1){
+							<?php if(\Session::get('peran')==1){
 								echo "<td class=\"text-center price\">Update</td>";
 								echo "<td class=\"text-center price\">Action</td>";
 								}else{
@@ -71,7 +71,7 @@
 								</td>
 								<td class="text-center cart_price"><p>{{$pesanan->status}}</p>
 								</td>
-								<?php if($pesanan->status=="Pending" && (\Session::get('id')==1)){?>
+								<?php if($pesanan->status=="Pending" && (\Session::get('peran')==1)){?>
 								<td class="text-center cart_price">
 									<p>
 										<a type="button" href={{"acceptpesanan/".$pesanan->id}} class="btn btn-default get">Accept</a>
@@ -79,7 +79,7 @@
 								</td>
 								<?php }?>
 
-								<?php if($pesanan->status=="Diterima" && (\Session::get('id')==1)){?>
+								<?php if($pesanan->status=="Diterima" && (\Session::get('peran')==1)){?>
 								<td class="text-center cart_price">
 									<p>
 										<a type="button" href={{"finishpesanan/".$pesanan->id}} class="btn btn-default get">Finish</a>

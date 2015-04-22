@@ -1,4 +1,14 @@
-<?php use App\pesanan; ?>
+<?php use App\pesanan; 
+	function writeHarga($harga){
+		$result = "";
+		$n = strlen($harga);
+		for ($i=$n; $i>3; $i -= 3){
+			$result = "." . substr($harga, $i-3, 3) . $result;
+		}
+		$result = substr($harga, 0, $i) . $result;
+		return $result;
+	}
+?>
 @extends("layouts.master")
 
 @section('content')
@@ -21,7 +31,7 @@
 							$pesanan = Pesanan::find(\Session::get('id_pesanan_finish'));
 						 	if ($pesanan->tipe != "cart"){
 						 ?>
-							<input type="text" class="text-center"  name="total_bayar" placeholder="Total Pendapatan (Rp xxx)" required/>
+							<input type="number" class="text-center"  name="total_bayar" placeholder="Total Pendapatan (Rp xxx)" required/>
 						<?php }else{ ?>
 							<input type="text" class="text-center" name="total_bayar" value="{{$pesanan->total_bayar}}" placeholder="{{"Rp ".$pesanan->total_bayar.",-"}}" readonly/>
 						<?php } ?>
